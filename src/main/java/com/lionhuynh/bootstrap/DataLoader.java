@@ -1,11 +1,9 @@
 package com.lionhuynh.bootstrap;
 
-import com.lionhuynh.model.Owner;
-import com.lionhuynh.model.Pet;
-import com.lionhuynh.model.PetType;
-import com.lionhuynh.model.Vet;
+import com.lionhuynh.model.*;
 import com.lionhuynh.service.OwnerService;
 import com.lionhuynh.service.PetTypeService;
+import com.lionhuynh.service.SpecialitesService;
 import com.lionhuynh.service.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,12 +17,15 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialitesService specialitesService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialitesService specialitesService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialitesService = specialitesService;
     }
 
     @Override
@@ -45,6 +46,18 @@ public class DataLoader implements CommandLineRunner {
         PetType cat = new PetType();
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
+
+        Speciality radiology = new Speciality();
+        radiology.setDescription("Radiology");
+        Speciality savedRadiology = specialitesService.save(radiology);
+
+        Speciality surgery = new Speciality();
+        surgery.setDescription("Surgery");
+        Speciality savedSurgery = specialitesService.save(surgery);
+
+        Speciality dentistry = new Speciality();
+        dentistry.setDescription("dentistry");
+        Speciality savedDentistry = specialitesService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");

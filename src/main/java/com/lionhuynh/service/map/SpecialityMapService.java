@@ -2,9 +2,11 @@ package com.lionhuynh.service.map;
 
 import com.lionhuynh.model.Speciality;
 import com.lionhuynh.service.SpecialitesService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialitesService {
 
     @Override
